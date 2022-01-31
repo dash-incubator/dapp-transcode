@@ -1,0 +1,34 @@
+{
+    "author": "ICJR",
+    "dependencies": {
+        "@dash-incubator/dapp-sdk": "*",
+        "@ffmpeg/ffmpeg": "^0.10.1"
+    },
+    "description": "Dash dApp Transcode",
+    "devDependencies": {
+        "glob": "^7.1.7",
+        "node-polyfill-webpack-plugin": "^1.1.4",
+        "npm-run-all": "^4.1.5",
+        "rimraf": "^3.0.2",
+        "ts-loader": "^9.2.6",
+        "tsc-alias": "^1.5.0",
+        "tsconfig-paths-webpack-plugin": "^3.5.2",
+        "typescript": "^4.5.2",
+        "webpack": "^5.64.4",
+        "webpack-cli": "^4.9.1"
+    },
+    "name": "@dash-incubator/dapp-transcode",
+    "main": "./build/index.js",
+    "private": false,
+    "scripts": {
+        "build": "run-s build:ts build:web",
+        "build:ts": "rimraf build && tsc && tsc-alias",
+        "build:web": "webpack --config webpack.typescript.config.js --env=filename=dapp --env=input=%INIT_CWD%/src --env=output=%INIT_CWD%/dist --env=production=true",
+        "-": "-",
+        "prepare": "npm run build",
+        "prepublishOnly": "npm run build"
+    },
+    "types": "./build/index.d.ts",
+    "unpkg": "./dist/dapp-transcode.min.js",
+    "version": "0.11.1"
+}
