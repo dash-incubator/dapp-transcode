@@ -1,10 +1,10 @@
-import { storage } from '@dash-incubator/dapp-sdk';
 import { fetchFile } from '@ffmpeg/ffmpeg';
 import { factory, read, segment } from './ffmpeg';
+import { Data } from './types';
 
 
-const transcode = async (file: File): Promise<string> => {
-    let data: { content: string, path: string }[] = [],
+const transcode = async (file: File): Promise<Data> => {
+    let data: Data = [],
         ffmpeg = await factory();
 
     ffmpeg.FS('writeFile', file.name, await fetchFile(file));
@@ -47,7 +47,7 @@ const transcode = async (file: File): Promise<string> => {
         i++;
     }
 
-    return await storage.ipfs.upload.data(data);
+    return data;
 };
 
 

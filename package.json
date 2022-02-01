@@ -1,7 +1,6 @@
 {
     "author": "ICJR",
     "dependencies": {
-        "@dash-incubator/dapp-sdk": "*",
         "@ffmpeg/ffmpeg": "^0.10.1"
     },
     "description": "Dash dApp Transcode",
